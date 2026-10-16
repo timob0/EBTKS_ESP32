@@ -3,7 +3,6 @@
 //#include "REMOTEFS.h"
 #include <ESPAsyncWebServer.h>
 #include <ESPmDNS.h>
-#include <SPIFFSEditor.h>
 #include <ESPAsyncWiFiManager.h>
 #include <HardwareSerial.h>
 #include "Update.h"
@@ -17,9 +16,6 @@
 
 
 HardwareSerial HwSerial(1);
-
-const char *http_username = "admin";
-const char *http_password = "admin";
 
 char *getLine(void);
 
@@ -245,8 +241,6 @@ void setup()
 
     ws.onEvent(onWsEvent);
     server.addHandler(&ws);
-
-    server.addHandler(new SPIFFSEditor(SPIFFS, http_username, http_password));
 
     // Start web server
     server.begin();
